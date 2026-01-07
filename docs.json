@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "Linden",
+  "theme": "linden",
   "name": "VektorOS",
   "colors": {
     "primary": "#ff3132",

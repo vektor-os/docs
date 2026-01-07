@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "Linden",
   "name": "VektorOS",
   "colors": {
     "primary": "#ff3132",
@@ -91,7 +91,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:hi@vektoros.io"
       }
     ],
     "primary": {

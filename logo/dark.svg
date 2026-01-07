@@ -1,3 +1,11 @@
-<svg   height="32" viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<text x="32" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#ffffff">Vektor<tspan fill="#ff3132">OS</tspan></text>
+<svg width="180" height="32" viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Modern geometric V shape -->
+  <path d="M12 4L4 20h4l4-8l4 8h4L12 4z" fill="#ff3132"/>
+  <path d="M12 4L4 20h4l4-8" fill="#ff3132" opacity="0.6"/>
+  <circle cx="12" cy="24" r="2" fill="#ff3132"/>
+  
+  <!-- Text: VektorOS with OS in red -->
+  <text x="30" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#ffffff">
+    Vektor<tspan fill="#ff3132">OS</tspan>
+  </text>
 </svg>

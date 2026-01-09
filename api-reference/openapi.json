@@ -15,9 +15,6 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080/"
-    },
-    {
       "url": "/",
       "description": "Current Server"
     }
@@ -43,10 +40,6 @@
     {
       "name": "Core",
       "description": "Core system endpoints"
-    },
-    {
-      "name": "Instance",
-      "description": "Instance information and health endpoints"
     },
     {
       "name": "Workflows",
@@ -1475,31 +1468,6 @@
         }
       }
     },
-    "/health": {
-      "get": {
-        "tags": [
-          "Instance"
-        ],
-        "summary": "Health check",
-        "description": "Simple health check endpoint",
-        "operationId": "healthCheck",
-        "responses": {
-          "200": {
-            "description": "Instance is healthy",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/workflows": {
       "get": {
         "tags": [
@@ -2182,6 +2150,80 @@
         }
       }
     },
+    "/api/v1/memory/all": {
+      "get": {
+        "tags": [
+          "Memory"
+        ],
+        "operationId": "listAllMemories",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentSearch",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDtoMemoryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/knowledge/by-name/{name}": {
       "get": {
         "tags": [
@@ -2392,28 +2434,6 @@
                   "additionalProperties": {
                     "type": "object"
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/": {
-      "get": {
-        "tags": [
-          "Instance"
-        ],
-        "summary": "Get instance info",
-        "description": "Returns information about this Vektor OS instance including version, status, and registered components",
-        "operationId": "getInstanceInfo",
-        "responses": {
-          "200": {
-            "description": "Instance information retrieved successfully",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/InstanceInfoDto"
                 }
               }
             }
@@ -4047,101 +4067,6 @@
             "type": "string"
           },
           "error": {
-            "type": "string"
-          }
-        }
-      },
-      "ComponentSummary": {
-        "required": [
-          "count",
-          "ids"
-        ],
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "InstanceInfoDto": {
-        "required": [
-          "agents",
-          "id",
-          "links",
-          "name",
-          "started_at",
-          "status",
-          "teams",
-          "uptime",
-          "version",
-          "workflows"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "started_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "uptime": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "agents": {
-            "$ref": "#/components/schemas/ComponentSummary"
-          },
-          "teams": {
-            "$ref": "#/components/schemas/ComponentSummary"
-          },
-          "workflows": {
-            "$ref": "#/components/schemas/ComponentSummary"
-          },
-          "links": {
-            "$ref": "#/components/schemas/InstanceLinks"
-          }
-        }
-      },
-      "InstanceLinks": {
-        "required": [
-          "agents",
-          "docs",
-          "openapi",
-          "teams",
-          "workflows"
-        ],
-        "type": "object",
-        "properties": {
-          "docs": {
-            "type": "string"
-          },
-          "openapi": {
-            "type": "string"
-          },
-          "agents": {
-            "type": "string"
-          },
-          "teams": {
-            "type": "string"
-          },
-          "workflows": {
             "type": "string"
           }
         }
